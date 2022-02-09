@@ -2,7 +2,7 @@ import React from 'react';
 import './TodoList.css';
 
 const TodoList = (props) => {
-   console.log(props);
+   // console.log(props);
 
    return (         
       <section>
