@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './TodoSearch.css';
 
 const TodoSearch = () => {
+   // se inicializa el estado para el input d ebusqueda
+   const [searchValue, setSearchValue] = useState('');
 
    const onSearchValueChange = (e) => {
-      console.log(e.target.value);
+      setSearchValue(e.target.value);
    }
 
    return (
