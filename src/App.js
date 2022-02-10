@@ -29,7 +29,7 @@ const App = () => {
    // Se filtan los todos en base al search
    let searchedTodos = [];
    if(!searchValue.length >= 1) {
-      searchedTodos = todos;
+      searchedTodos = [...todos];
    } else {
       searchedTodos = todos.filter(todo => {
          const todoText = todo.text.toLowerCase();
@@ -56,6 +56,9 @@ const App = () => {
                   key={todo.text} 
                   text={todo.text}
                   completed={todo.completed}
+
+                  todos={todos}
+                  setTodos={setTodos}
                />
             ))}
          </TodoList>

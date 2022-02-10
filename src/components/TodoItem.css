@@ -47,6 +47,7 @@
    font-weight: bold;
    top: -10px;
    right: 0;
+   cursor: pointer;
  }
  .Icon-delete:hover {
    color: red;
