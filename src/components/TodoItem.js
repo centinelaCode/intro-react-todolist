@@ -1,26 +1,25 @@
 import React from 'react';
 import './TodoItem.css';
 
-const TodoItem = ({text, completed, todos, setTodos}) => {
+const TodoItem = ({text, completed, onComplete, onDelete}) => {
    // console.log(todos);
 
-   const onComplete = () => {
+   // const onComplete = () => {
       // alert('Completaste el todo ' + text);
-      const newTtodos = todos.map(todo => {
-         if(todo.text === text) {
-            return { ...todo, completed: !todo.completed };
-         }
-         return todo;
-      })
-      setTodos(newTtodos);
-   }
+      // const newTtodos = todos.map(todo => {
+      //    if(todo.text === text) {
+      //       return { ...todo, completed: !todo.completed };
+      //    }
+      //    return todo;
+      // })
+      // setTodos(newTtodos);
+   // }
 
-   const onDelete = () => {
+   // const onDelete = () => {
       // alert('Borraste el todo ' + text);
-      const newTodos = todos.filter(todo => todo.text != text);
-      setTodos(newTodos);
-      // alert('Eliminastae el todo ' + text);
-   }
+      // const newTodos = todos.filter(todo => todo.text != text);
+      // setTodos(newTodos);
+   // }
 
   return (
    <li className="TodoItem"> 

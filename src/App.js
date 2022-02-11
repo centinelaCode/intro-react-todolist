@@ -37,6 +37,23 @@ const App = () => {
          return todoText.includes(searchText);
       })
    }
+
+   // para completar el Todo seleccionado
+   const competeTodo = (text) => {
+      // ontenemos el indice del todo a completar
+      const todoIndex = todos.findIndex(todo => todo.text === text);
+      // todos[todoIndex] = { text: todos[todoIndex].text, completed: !todos[todoIndex].completed };
+      const newTodos = [...todos];
+      newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
+      setTodos(newTodos);
+   }
+
+   // Para eliminar el Todo seleccionado
+   const deleteTodo = (text) => {
+      const newTodos = todos.filter(todo => todo.text != text);
+      setTodos(newTodos);
+
+   }
    
 
    return (
@@ -57,8 +74,8 @@ const App = () => {
                   text={todo.text}
                   completed={todo.completed}
 
-                  todos={todos}
-                  setTodos={setTodos}
+                  onComplete={() => competeTodo(todo.text)}
+                  onDelete={() => deleteTodo(todo.text)}
                />
             ))}
          </TodoList>
