@@ -3,17 +3,29 @@ import AppUI from './components/AppUI';
 // import './App.css';
 
 
-const deafultTodos = [
-   { text: 'Cortar Cebolla', completed: true },
-   { text: 'Tomar curso intro a React', completed: false },
-   { text: 'Llorar con la Llorona', completed: true },
-   { text: 'Platzi react', completed: false },
-]
+// const deafultTodos = [
+//    { text: 'Cortar Cebolla', completed: true },
+//    { text: 'Tomar curso intro a React', completed: false },
+//    { text: 'Llorar con la Llorona', completed: true },
+//    { text: 'Platzi react', completed: false },
+// ]
 
 const App = () => {
 
+   //localstorage
+   const localStorageTodos = localStorage.getItem('TODOS_V1');
+   let parsedTodos;
+
+   if(!localStorageTodos){
+      localStorage.setItem('TODOS_V1',JSON.stringify([]));
+      parsedTodos = [];
+   } else {
+      parsedTodos = JSON.parse(localStorageTodos);
+   }
+   
+
    // state for todos
-   const [todos, setTodos] = useState(deafultTodos);
+   const [todos, setTodos] = useState(parsedTodos);
    // state para el input de busqueda
    const [searchValue, setSearchValue] = useState('');
 
@@ -33,6 +45,14 @@ const App = () => {
       })
    }
 
+
+   const saveTodos = (newTodos) => {
+      // to string all todos
+      const stringifiedTodos = JSON.stringify(newTodos);
+      localStorage.setItem('TODOS_V1', stringifiedTodos);
+      setTodos(newTodos);
+   }
+
    // para completar el Todo seleccionado
    const competeTodo = (text) => {
       // ontenemos el indice del todo a completar
@@ -40,13 +60,13 @@ const App = () => {
       // todos[todoIndex] = { text: todos[todoIndex].text, completed: !todos[todoIndex].completed };
       const newTodos = [...todos];
       newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
-      setTodos(newTodos);
+      saveTodos(newTodos);
    }
 
    // Para eliminar el Todo seleccionado
    const deleteTodo = (text) => {
       const newTodos = todos.filter(todo => todo.text != text);
-      setTodos(newTodos);
+      saveTodos(newTodos);
    }
    
 
