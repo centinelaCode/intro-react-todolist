@@ -15,6 +15,7 @@ const TodoProvider = (props) => {
 
    // state para el input de busqueda
    const [searchValue, setSearchValue] = useState("");
+   const [openModal, setOpenModal] = useState(false);
 
    // Se obtiene el numero de los todos y los completados
    const completedTodos = todos.filter((todo) => todo.completed).length;
@@ -31,6 +32,12 @@ const TodoProvider = (props) => {
       return todoText.includes(searchText);
       });
    }
+
+   // para agragar todos
+   const addTodo = (text) => {      
+      const newTodos = [...todos, { completed: false, text }];      
+      saveTodos(newTodos);      
+   };
 
    // para completar el Todo seleccionado
    const competeTodo = (text) => {
@@ -58,7 +65,10 @@ const TodoProvider = (props) => {
          setSearchValue,
          searchedTodos,
          competeTodo,
-         deleteTodo
+         deleteTodo,
+         addTodo,
+         openModal,
+         setOpenModal
       }} >
          {props.children}
       </TodoContext.Provider>

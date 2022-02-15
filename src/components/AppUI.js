@@ -5,6 +5,8 @@ import TodoSearch from "./TodoSearch";
 import TodoList from "./TodoList";
 import TodoItem from "./TodoItem";
 import CreateTodoButtom from "./CreateTodoButton";
+import Modal from './Modal';
+import TodoForm from "./TodoForm";
 
 const AppUI = () => {
 
@@ -13,7 +15,9 @@ const AppUI = () => {
     loading, 
     searchedTodos, 
     competeTodo, 
-    deleteTodo 
+    deleteTodo,
+    openModal, 
+    setOpenModal
   } = useContext(TodoContext);
 
   return (
@@ -37,7 +41,16 @@ const AppUI = () => {
         ))}
       </TodoList>
 
-      <CreateTodoButtom />
+      {!!openModal && (
+        <Modal>
+          <TodoForm />
+        </Modal>
+      )}
+
+      <CreateTodoButtom 
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+      />
     </>
   );
 };
